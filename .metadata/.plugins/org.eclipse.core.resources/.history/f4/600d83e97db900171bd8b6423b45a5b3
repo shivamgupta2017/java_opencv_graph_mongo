@@ -1,0 +1,13 @@
+
+public class Support {
+
+	long source;
+	long target;
+	public Support(long source, long target) 
+	{
+		this.source=source;
+		this.target=target;
+	
+	}
+
+}

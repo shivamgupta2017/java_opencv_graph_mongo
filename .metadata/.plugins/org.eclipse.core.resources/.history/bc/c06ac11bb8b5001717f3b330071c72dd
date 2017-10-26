@@ -1,0 +1,55 @@
+/**
+ * 
+ */
+package test_;
+
+import java.util.ArrayList;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * @author shivam
+ *
+ */
+public class Test_file {
+
+	public void get_json_format(ArrayList<String> al) throws JSONException
+	{
+		
+		JSONObject jObject;
+		jObject = new JSONObject(al.get(0));
+		
+		
+		System.out.println(jObject);
+		
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		
+		Main_file mf=new Main_file();
+		ArrayList<String> ar=new ArrayList<String>();
+		mf.set_id(1);
+		mf.set_name("shivam");
+		ar.add(mf.get_data());
+		
+		new Test_file().get_json_format(ar);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}

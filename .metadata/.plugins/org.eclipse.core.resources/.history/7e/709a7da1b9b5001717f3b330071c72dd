@@ -1,0 +1,70 @@
+/**
+ * 
+ */
+package test_;
+
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * @author shivam
+ *
+ */
+public class Test_file {
+
+	public void get_json_format(ArrayList<String> al)
+	{
+		
+		JSONObject jObject = null;
+//		
+		try 
+		{
+			jObject = new JSONObject(al.get(0));
+
+		
+		
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(jObject);
+		JSONArray jsonArray = new JSONArray();
+		for(int i=0; i<5; i++)
+			jsonArray.put(jObject);
+		
+		System.out.println(x);
+		
+		
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		
+		Main_file mf=new Main_file();
+		ArrayList<String> ar=new ArrayList<String>();
+		mf.set_id(1);
+		mf.set_name("shivam");
+		ar.add(mf.get_data());
+		
+		new Test_file().get_json_format(ar);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}

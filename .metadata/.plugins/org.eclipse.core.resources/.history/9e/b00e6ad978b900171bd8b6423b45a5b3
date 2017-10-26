@@ -1,0 +1,46 @@
+import java.util.*;
+import java.io.*;
+import org.graphstream.*;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.MultiGraph;
+
+public class Solution 
+{
+
+	public HashSet<Long> read_table() throws Exception
+	{
+		HashSet<Long> set=new HashSet<Long>();
+		String line="";
+		BufferedReader br = new BufferedReader(new FileReader("input.tsv"));
+		
+		while((line=br.readLine())!=null)
+		{
+			String[] c=line.split("\t");
+			for(int i=0; i<c.length; i++)
+			{
+				long l=Long.parseLong(c[i]);
+				set.add(l);
+			}
+		}
+		br.close();
+		return set;
+		
+	}
+	
+	//main method
+	public static void main(String args[]) throws Exception
+	{
+		HashSet<Long> set=new HashSet<Long>();
+		//read file call
+		
+		Solution solution=new Solution();
+		set = solution.read_table();
+		
+		System.out.println(x);
+		Graph graph = new MultiGraph("Tutorial 1");
+		
+		
+		
+	}
+}
+

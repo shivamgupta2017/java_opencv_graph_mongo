@@ -1,0 +1,35 @@
+import java.util.*;
+import java.io.*;
+
+
+public class Solution 
+{
+
+	public Solution() 
+	{
+		
+
+	
+	
+	}
+	
+	public static void main(String args[]) throws Exception
+	{
+		HashSet<Integer> set=new HashSet<Integer>();  
+		/*System.out.println("Working Directory = " +
+	              System.getProperty("user.dir"));*/
+		BufferedReader TSVFile = new BufferedReader(new FileReader("input.tsv"));
+		String dataRow = TSVFile.readLine();
+		
+		String test=dataRow.split('\t');
+		 
+		 
+		 
+		
+		
+	}
+
+	
+	
+}
+

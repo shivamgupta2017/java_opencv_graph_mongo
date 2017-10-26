@@ -1,0 +1,25 @@
+import java.util.HashSet;
+
+public class Solution 
+{
+
+	public Solution() 
+	{
+		
+
+	
+	
+	}
+	
+	public static void main(String args[])
+	{
+		 HashSet<Integer> set=new HashSet<String>();  
+		 
+		
+		
+	}
+
+	
+	
+}
+

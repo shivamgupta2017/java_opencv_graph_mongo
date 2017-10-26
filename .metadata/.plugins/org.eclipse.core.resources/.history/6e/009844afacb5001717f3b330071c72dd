@@ -1,0 +1,14 @@
+package test_;
+
+public class Main_file {
+
+	int id;
+	String name;
+	public Main_file() 
+	{
+	
+	}
+	
+	
+
+}

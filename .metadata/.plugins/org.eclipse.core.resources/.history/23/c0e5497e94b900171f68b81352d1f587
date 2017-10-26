@@ -1,0 +1,75 @@
+import java.util.*;
+import java.io.*;
+
+import org.graphstream.graph.Edge;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.MultiGraph;
+
+public class Solution 
+{
+	
+	static ArrayList<Support> al=new ArrayList<Support>();
+	
+	public HashSet<String> read_table() throws Exception
+	{
+		
+		
+		HashSet<String> set=new HashSet<String>();
+		
+		String line="";
+		
+		
+		BufferedReader br = new BufferedReader(new FileReader("input.tsv"));
+		
+		
+		while((line=br.readLine())!=null)
+		{
+			String[] c=line.split("\t");
+			for(int i=0; i<c.length; i++)
+			{
+				//long l=Long.parseLong(c[i]);
+				set.add(c[i]);
+			}
+			al.add(new Support(c[0], c[1]));
+		}
+		br.close();
+		return set;
+		
+	}
+	
+	//main method
+	public static void main(String args[]) throws Exception
+	{
+		HashSet<String> set=new HashSet<String>();
+		//read file call
+		
+		Graph graph = new MultiGraph("Tutorial 1");
+		Solution solution=new Solution();
+		set = solution.read_table();
+		
+		for(String l: set)
+		{
+			graph.addNode(l.toString());
+		}
+		
+		for(int i=0; i<al.size(); i++)
+		{
+			graph.addEdge(al.get(i).source+""+al.get(i).target, al.get(i).source, al.get(i).target);
+		}
+		for(Node g:graph.getEachNode())
+		{
+			long a=g.getOutDegree();
+			long b=g.getInDegree();
+			System.out.println("a :"+a);
+			System.out.println(b);
+			//System.out.println(a-b);
+			/*System.out.println(g.getOutDegree());
+			System.out.println(g.getInDegree());*/
+		}
+		
+		
+		//graph.display();
+	}
+}
+

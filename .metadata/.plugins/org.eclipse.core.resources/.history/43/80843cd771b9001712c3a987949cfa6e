@@ -1,0 +1,57 @@
+import java.util.*;
+import java.io.*;
+
+
+public class Solution 
+{
+
+	public HashSet<Long> read_table() throws Exception
+	{
+		
+		
+		HashSet<Long> set=new HashSet<Long>();
+		String line="";
+		BufferedReader br = new BufferedReader(new FileReader("input.tsv"));
+		
+		while((line=br.readLine())!=null)
+		{
+			String[] c=line.split("\t");
+			for(int i=0; i<c.length; i++)
+			{
+				long l=Long.parseLong(c[i]);
+				set.add(l);
+			}
+		}
+		return set;
+		
+	}
+	
+	
+	public static void main(String args[]) throws Exception
+	{
+		HashSet<Long> set=new HashSet<Long>();  
+		/*System.out.println("Working Directory = " +
+	              System.getProperty("user.dir"));*/
+		
+		
+		
+		
+		
+		//System.out.println(br.readLine());
+		
+		br.close();
+		
+		
+		
+		
+		 
+		 
+		 
+		
+		
+	}
+
+	
+	
+}
+

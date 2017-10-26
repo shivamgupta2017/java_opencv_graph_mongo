@@ -1,0 +1,53 @@
+package mongo;
+
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
+
+import java.util.logging.Logger;
+
+import org.json.simple.JSONObject;
+
+import java.util.logging.Level;
+public class ConnectToDB 
+{
+
+	public static void main(String args[])
+	{
+		String username="shivam";
+		String useremail="shivam@gmail.com";
+		String password="123456";
+		Logger mongoLogger = Logger.getLogger( "org.mongodb.driver" );
+		mongoLogger.setLevel(Level.SEVERE); // e.g. or Log.WARNING, etc.
+		JSONObject obj = new JSONObject();
+		obj.put("username", username);
+		obj.put("useremail",useremail);
+		obj.put("password", password);
+		
+		try 
+		{
+			
+			MongoClient mongo = new MongoClient( "localhost" , 27017 );
+			MongoDatabase database = mongo.getDatabase("myDb");
+			DBCollection collection = db.getCollection("userdata");
+			
+			//database.createCollection("userdata");
+			//userdata.insert(obj);
+			
+			
+			
+			//System.out.println("done\n"+database.toString());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+}

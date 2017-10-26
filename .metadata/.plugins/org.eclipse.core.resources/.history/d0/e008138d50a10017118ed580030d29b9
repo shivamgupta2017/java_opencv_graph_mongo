@@ -1,0 +1,127 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
+import com.xuggle.mediatool.IMediaReader;
+import com.xuggle.mediatool.IMediaViewer;
+import com.xuggle.mediatool.MediaListenerAdapter;
+import com.xuggle.mediatool.ToolFactory;
+import com.xuggle.mediatool.event.IVideoPictureEvent;
+import com.xuggle.xuggler.Global;
+class Solution extends MediaListenerAdapter
+{
+	static final long MICRO_SECONDS_BETWEEN_FRAMES=(Global.DEFAULT_PTS_PER_SECOND)*5;
+	
+	static int mVideoStreamIndex = -1;
+	 private static long mLastPtsWrite = Global.NO_PTS;
+	
+	 public void onVideoPicture(IVideoPictureEvent event)
+	  {
+		 
+		 ///System.out.println("aaaya");
+	    try
+	    {
+	      // if the stream index does not match the selected stream index,
+	      // then have a closer look
+	      
+	      if (event.getStreamIndex() != mVideoStreamIndex)
+	      {
+	        // if the selected video stream id is not yet set, go ahead an
+	        // select this lucky video stream
+	        
+	        if (-1 == mVideoStreamIndex)
+	          mVideoStreamIndex = event.getStreamIndex();
+	        
+	        // otherwise return, no need to show frames from this video stream
+	        
+	        else
+	          return;
+	      }
+	      
+	      // if uninitialized, backdate mLastPtsWrite so we get the very
+	      // first frame
+
+	      if (mLastPtsWrite == Global.NO_PTS)
+	        mLastPtsWrite = event.getTimeStamp() - MICRO_SECONDS_BETWEEN_FRAMES;
+
+	      // if it's time to write the next frame
+
+	      if (event.getTimeStamp() - mLastPtsWrite >= MICRO_SECONDS_BETWEEN_FRAMES)
+	      {
+	        // Make a temporary file name
+
+	        File file = File.createTempFile("frame", ".png");
+
+	        // write out PNG
+
+	        ImageIO.write(event.getImage(), "png", file);
+
+	        // indicate file written
+
+	        double seconds = ((double)event.getTimeStamp())
+	          / Global.DEFAULT_PTS_PER_SECOND;
+	        System.out.printf("at elapsed time of %6.3f seconds wrote: %s\n",
+	          seconds, file);
+	        
+	        // update last write time
+	        
+	        mLastPtsWrite += MICRO_SECONDS_BETWEEN_FRAMES;
+	      }
+	    }
+	    catch (Exception e)
+	    {
+	      e.printStackTrace();
+	    }
+	  }
+	 
+	 
+	 public void go_to_hell(IMediaReader reader)
+	{
+		reader.addListener(this);
+	
+		
+		System.out.println(reader.readPacket());
+		
+		
+		while (reader.readPacket() == null)
+		do 
+		{
+			//System.out.println("dllll");
+		} 
+		while(false);
+		
+		
+		
+	}
+	public static void main(String args[])
+	{
+		try
+		{
+			
+			IMediaReader reader = ToolFactory.makeReader("/home/shivam/Desktop/test.mp4");
+			
+		
+			
+			
+			
+			
+			reader.setBufferedImageTypeToGenerate(BufferedImage.TYPE_3BYTE_BGR);
+			
+			
+			
+			
+			
+			new Solution().go_to_hell(reader);
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("e :"+e.toString());
+		}
+		
+		
+		
+	
+	}
+}
